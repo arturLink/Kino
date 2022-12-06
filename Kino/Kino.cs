@@ -50,6 +50,8 @@ namespace Kino
             this.FilmPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.Controls.Add(this.FilmPanel);
 
+
+
         }
     }
 }
