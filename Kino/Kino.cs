@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,7 +51,48 @@ namespace Kino
             this.FilmPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.Controls.Add(this.FilmPanel);
 
+            /////////////sdelat for tsikls gde kartinki budut dobavljatsja////////////////
+            //film = new PictureBox()
+            //{
+            //    BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D,
+            //    //Dock = System.Windows.Forms.DockStyle.Fill,
+            //    //Location = new System.Drawing.Point(2, 2),
+            //    Size = new System.Drawing.Size(1000, 1000),
+            //    TabIndex = 0,
+            //    TabStop = false
 
+            //};
+            //film.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            int verg = 1; //column
+            int rida = 0; //row
+            string[] paths = Directory.GetFiles(@"C:\Users\vafle\source\repos\Kino\Kino\MovieImages\", "*.jpg");
+            List<string> images = paths.ToList();
+            for (int i = 0; i < images.Count; i++)
+            {
+                film = new PictureBox()
+                {
+                    BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D,
+                    //Dock = System.Windows.Forms.DockStyle.Fill,
+                    //Location = new System.Drawing.Point(2, 2),
+                    Size = new System.Drawing.Size(1000, 1000),
+                    TabIndex = 0,
+                    TabStop = false
+
+
+                };
+                film.SizeMode = PictureBoxSizeMode.StretchImage;
+                film.ImageLocation = paths[i];
+                rida++;
+                if (rida == 4)
+                {
+                    verg++;
+                    rida = 1;
+                }
+                FilmPanel.Controls.Add(film, verg, rida);
+                //verg++;
+                //rida++;
+            }
 
         }
     }
