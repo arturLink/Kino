@@ -13,7 +13,9 @@ namespace Kino
 {
     public partial class Kino : Form
     {
-        PictureBox film;
+        Button exit, osta;
+        Label nimilbl,zanrlbl,aastalbl,keellbl, kestuslbl;
+        PictureBox film,filmbox;
         TableLayoutPanel FilmPanel = new TableLayoutPanel();
         Image BckGroundPic = Image.FromFile("../../ProjectImages/theater.jpg");
         Image PanelFramePic = Image.FromFile("../../ProjectImages/frame.jpg");
@@ -23,7 +25,64 @@ namespace Kino
             this.Size = new Size(1280, 720);
             this.BackgroundImage = BckGroundPic;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Text = "Kino";
 
+            nimilbl = new Label()
+            {
+                Text = "nimi",
+                Location= new Point(750,50)
+                
+            };
+            this.Controls.Add(nimilbl);
+            zanrlbl = new Label()
+            {
+                Text = "zanr",
+                Location = new Point(750, 150)
+
+            };
+            this.Controls.Add(zanrlbl);
+            aastalbl = new Label()
+            {
+                Text = "aasta",
+                Location = new Point(750, 100)
+
+            };
+            this.Controls.Add(aastalbl);
+            keellbl = new Label()
+            {
+                Text = "keel",
+                Location = new Point(750, 200)
+
+            };
+            this.Controls.Add(keellbl);
+            kestuslbl = new Label()
+            {
+                Text = "kestus",
+                Location = new Point(750, 250)
+
+            };
+            this.Controls.Add(kestuslbl);
+
+            filmbox = new PictureBox()
+            {
+                Location = new Point(900,50),
+                Size = new Size(320,250)
+            };
+            this.Controls.Add(filmbox);
+            exit = new Button()
+            {
+                Text = "Väljuta",
+                Size = new Size(75, 50),
+                Location = new Point(900,380)
+            };
+            this.Controls.Add(exit);
+            osta = new Button()
+            {
+                Text="Osta piletid",
+                Size= new Size(75,50),
+                Location = new Point(780,380)
+            };
+            this.Controls.Add(osta);
 
 
             FilmPanel = new TableLayoutPanel()
@@ -63,7 +122,7 @@ namespace Kino
                     BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D,
                     //Dock = System.Windows.Forms.DockStyle.Fill,
                     //Location = new System.Drawing.Point(2, 2),
-                    Size = new System.Drawing.Size(1000, 1000),
+                    Size = new System.Drawing.Size(140, 200),
                     TabIndex = 0,
                     TabStop = false
 
