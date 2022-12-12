@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,9 @@ namespace Kino
         TableLayoutPanel FilmPanel = new TableLayoutPanel();
         Image BckGroundPic = Image.FromFile("../../ProjectImages/theater.jpg");
         Image PanelFramePic = Image.FromFile("../../ProjectImages/frame.jpg");
+
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\Kino\KinoDB.mdf;Integrated Security=True");
+        SqlCommand cmd;
 
         public Kino()
         {
@@ -163,10 +167,15 @@ namespace Kino
             }
 
         }
-
+        //dorabotat nado -- select,i vivdo danih 4eres kartinku
         private void Film_Click(object sender, EventArgs e)
         {
-            MessageBox.Show((FilmPanel.GetCellPosition(film)).ToString());
+            connect.Open();
+            cmd = new SqlCommand("SELECT Nimi FROM Filmid");
+            if (film.ImageLocation=="")
+            {
+
+            }
         }
 
         //private void FilmPanel_Click(object sender, EventArgs e)
