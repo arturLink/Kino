@@ -30,35 +30,50 @@ namespace Kino
             nimilbl = new Label()
             {
                 Text = "nimi",
-                Location= new Point(750,50)
-                
-            };
+                Location= new Point(750,70),
+                BackColor = System.Drawing.Color.Salmon,
+                BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
+
+        };
             this.Controls.Add(nimilbl);
             zanrlbl = new Label()
             {
                 Text = "zanr",
-                Location = new Point(750, 150)
+                Location = new Point(750, 170),
+                BackColor = System.Drawing.Color.Salmon,
+                BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
 
             };
             this.Controls.Add(zanrlbl);
             aastalbl = new Label()
             {
                 Text = "aasta",
-                Location = new Point(750, 100)
+                Location = new Point(750, 120),
+                BackColor = System.Drawing.Color.Salmon,
+                BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
 
             };
             this.Controls.Add(aastalbl);
             keellbl = new Label()
             {
                 Text = "keel",
-                Location = new Point(750, 200)
+                Location = new Point(750, 220),
+                BackColor = System.Drawing.Color.Salmon,
+                BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
 
             };
             this.Controls.Add(keellbl);
             kestuslbl = new Label()
             {
                 Text = "kestus",
-                Location = new Point(750, 250)
+                Location = new Point(750, 270),
+                BackColor = System.Drawing.Color.Salmon,
+                BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
 
             };
             this.Controls.Add(kestuslbl);
@@ -72,17 +87,23 @@ namespace Kino
             exit = new Button()
             {
                 Text = "Väljuta",
-                Size = new Size(75, 50),
-                Location = new Point(900,380)
+                Size = new Size(125, 75),
+                Location = new Point(1050,340),
+                BackColor = System.Drawing.Color.Salmon,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
             };
             this.Controls.Add(exit);
+            exit.Click += Exit_Click;
             osta = new Button()
             {
                 Text="Osta piletid",
-                Size= new Size(75,50),
-                Location = new Point(780,380)
+                Size= new Size(125,75),
+                Location = new Point(780,340),
+                BackColor = System.Drawing.Color.Salmon,
+                Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F),
             };
             this.Controls.Add(osta);
+            osta.Click += Osta_Click;
 
 
             FilmPanel = new TableLayoutPanel()
@@ -109,11 +130,12 @@ namespace Kino
             this.FilmPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 192F));
             this.FilmPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.Controls.Add(this.FilmPanel);
+            //FilmPanel.Click += FilmPanel_Click;
 
 
             int verg = 1; //column
             int rida = 0; //row
-            string[] paths = Directory.GetFiles(@"C:\Users\vafle\source\repos\Kino\Kino\MovieImages\", "*.jpg");
+            string[] paths = Directory.GetFiles(@"C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\Kino\MovieImages\", "*.jpg");
             List<string> images = paths.ToList();
             for (int i = 0; i < images.Count; i++)
             {
@@ -137,8 +159,33 @@ namespace Kino
                     rida = 1;
                 }
                 FilmPanel.Controls.Add(film, verg, rida);
+                film.Click += Film_Click;
             }
 
+        }
+
+        private void Film_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show((FilmPanel.GetCellPosition(film)).ToString());
+        }
+
+        //private void FilmPanel_Click(object sender, EventArgs e)
+        //{
+        //    //MessageBox.Show((FilmPanel.GetCellPosition(film)).ToString());
+        //    if (FilmPanel.GetCellPosition(film).ToString() == "3,2")
+        //    {
+        //        nimilbl.Text = "Must Adam";
+        //    }
+        //}
+
+        private void Osta_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

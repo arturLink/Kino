@@ -101,6 +101,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="KinoDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KinoDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>KinoDB.mdf</DependentUpon>
+    </Content>
     <Content Include="MovieImages\beetmeen.jpg" />
     <Content Include="MovieImages\childmolestsgrownman.jpg" />
     <Content Include="MovieImages\dedshelvsharagu.jpg" />
