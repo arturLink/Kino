@@ -21,8 +21,10 @@ namespace Kino
         Image BckGroundPic = Image.FromFile("../../ProjectImages/theater.jpg");
         Image PanelFramePic = Image.FromFile("../../ProjectImages/frame.jpg");
 
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\Kino\KinoDB.mdf;Integrated Security=True");
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\KinoDB.mdf;Integrated Security=True");
         SqlCommand cmd;
+        SqlDataReader dr;
+        SqlDataAdapter dataAdapter;
 
         public Kino()
         {
@@ -139,7 +141,7 @@ namespace Kino
 
             int verg = 1; //column
             int rida = 0; //row
-            string[] paths = Directory.GetFiles(@"C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\Kino\MovieImages\", "*.jpg");
+            string[] paths = Directory.GetFiles(@"C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\MovieImages\", "*.jpg");
             List<string> images = paths.ToList();
             for (int i = 0; i < images.Count; i++)
             {
@@ -151,7 +153,7 @@ namespace Kino
                     Size = new System.Drawing.Size(140, 200),
                     TabIndex = 0,
                     TabStop = false
-
+                    
 
                 };
                 film.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -167,25 +169,41 @@ namespace Kino
             }
 
         }
-        //dorabotat nado -- select,i vivdo danih 4eres kartinku
+        //dorabotat nado -- select,i vivod danih 4eres kartinku
         private void Film_Click(object sender, EventArgs e)
         {
+            PictureBox pic = sender as PictureBox;
+            var filmidDB = new List<string>();
+            //string filmNimi;
+            FileInfo info = new FileInfo(pic.ImageLocation.ToString());
+            string nimi = info.Name;
+            //string pilt = film.ImageLocation.ToString();
             connect.Open();
-            cmd = new SqlCommand("SELECT Nimi FROM Filmid");
-            if (film.ImageLocation=="")
+            dataAdapter = new SqlDataAdapter("SELECT Nimi FROM Filmid WHERE Pilt=" + nimi, connect);
+            DataTable piltTable = new DataTable();
+            dataAdapter.Fill(piltTable);
+            foreach (DataRow nimetus in piltTable.Rows)
             {
-
+                MessageBox.Show("22");
+                //filmidDB.Add(nimetus["Nimi"]);
+                nimilbl.Text = nimetus["Nimi"].ToString();
+                //katBox.Items.Add(nimetus["KategooriaNimetus"]);
             }
+            //cmd = new SqlCommand("SELECT Nimi FROM Filmid WHERE Pilt=" + nimi, connect);
+            //dr = cmd.ExecuteReader();
+            //if (dr.Read())
+            //{
+            //    dr.Close();
+            //    filmidDB.Add(dr.GetString(0));
+            //    MessageBox.Show(dr.GetString(0));
+            //}
+            //else
+            //{
+            //    MessageBox.Show("ssss");
+            //}
+            connect.Close();
         }
 
-        //private void FilmPanel_Click(object sender, EventArgs e)
-        //{
-        //    //MessageBox.Show((FilmPanel.GetCellPosition(film)).ToString());
-        //    if (FilmPanel.GetCellPosition(film).ToString() == "3,2")
-        //    {
-        //        nimilbl.Text = "Must Adam";
-        //    }
-        //}
 
         private void Osta_Click(object sender, EventArgs e)
         {
