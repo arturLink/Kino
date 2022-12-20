@@ -21,7 +21,7 @@ namespace Kino
         Image BckGroundPic = Image.FromFile("../../ProjectImages/theater.jpg");
         Image PanelFramePic = Image.FromFile("../../ProjectImages/frame.jpg");
 
-        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\KinoDB.mdf;Integrated Security=True");
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vafle\Source\Repos\Kino\Kino\KinoDB.mdf;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         SqlDataAdapter dataAdapter;
@@ -141,7 +141,7 @@ namespace Kino
 
             int verg = 1; //column
             int rida = 0; //row
-            string[] paths = Directory.GetFiles(@"C:\Users\opilane\source\repos\Link_TARpv21\Kino\Kino\MovieImages\", "*.jpg");
+            string[] paths = Directory.GetFiles(@"../../MovieImages/", "*.jpg");
             List<string> images = paths.ToList();
             for (int i = 0; i < images.Count; i++)
             {
@@ -177,7 +177,7 @@ namespace Kino
             //string filmNimi;
             FileInfo info = new FileInfo(pic.ImageLocation.ToString());
             string nimi = info.Name;
-            //string pilt = film.ImageLocation.ToString();
+            //string pilt = film.ImageLocation.ToString
             connect.Open();
             dataAdapter = new SqlDataAdapter("SELECT Nimi FROM Filmid WHERE Pilt=" + nimi, connect);
             DataTable piltTable = new DataTable();
