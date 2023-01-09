@@ -149,6 +149,7 @@
     <Content Include="MovieImages\therock.jpg" />
     <Content Include="MovieImages\wweredpool.jpg" />
     <Content Include="ProjectImages\frame.jpg" />
+    <Content Include="ProjectImages\Info.jpg" />
     <Content Include="ProjectImages\kollane.JPG" />
     <Content Include="ProjectImages\punane.JPG" />
     <Content Include="ProjectImages\roheline.JPG" />
