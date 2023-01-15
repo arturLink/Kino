@@ -69,6 +69,9 @@
             this.nimiBox.Name = "nimiBox";
             this.nimiBox.Size = new System.Drawing.Size(163, 39);
             this.nimiBox.TabIndex = 2;
+            this.nimiBox.Text = "Nimi";
+            this.nimiBox.Enter += new System.EventHandler(this.nimiBox_Enter);
+            this.nimiBox.Leave += new System.EventHandler(this.nimiBox_Leave);
             // 
             // aastaBox
             // 
@@ -77,6 +80,9 @@
             this.aastaBox.Name = "aastaBox";
             this.aastaBox.Size = new System.Drawing.Size(163, 39);
             this.aastaBox.TabIndex = 3;
+            this.aastaBox.Text = "Aasta";
+            this.aastaBox.Enter += new System.EventHandler(this.aastaBox_Enter);
+            this.aastaBox.Leave += new System.EventHandler(this.aastaBox_Leave);
             // 
             // zanrBox
             // 
@@ -85,6 +91,9 @@
             this.zanrBox.Name = "zanrBox";
             this.zanrBox.Size = new System.Drawing.Size(163, 39);
             this.zanrBox.TabIndex = 4;
+            this.zanrBox.Text = "Zanr";
+            this.zanrBox.Enter += new System.EventHandler(this.zanrBox_Enter);
+            this.zanrBox.Leave += new System.EventHandler(this.zanrBox_Leave);
             // 
             // keelBox
             // 
@@ -93,6 +102,9 @@
             this.keelBox.Name = "keelBox";
             this.keelBox.Size = new System.Drawing.Size(163, 39);
             this.keelBox.TabIndex = 5;
+            this.keelBox.Text = "Keel";
+            this.keelBox.Enter += new System.EventHandler(this.keelBox_Enter);
+            this.keelBox.Leave += new System.EventHandler(this.keelBox_Leave);
             // 
             // kestusBox
             // 
@@ -101,6 +113,9 @@
             this.kestusBox.Name = "kestusBox";
             this.kestusBox.Size = new System.Drawing.Size(163, 39);
             this.kestusBox.TabIndex = 6;
+            this.kestusBox.Text = "Kestus";
+            this.kestusBox.Enter += new System.EventHandler(this.kestusBox_Enter);
+            this.kestusBox.Leave += new System.EventHandler(this.kestusBox_Leave);
             // 
             // uuendaBtn
             // 
@@ -146,7 +161,7 @@
             this.piltBtn.Name = "piltBtn";
             this.piltBtn.Size = new System.Drawing.Size(129, 43);
             this.piltBtn.TabIndex = 14;
-            this.piltBtn.Text = "Otsi fail";
+            this.piltBtn.Text = "Valita Pildi";
             this.piltBtn.UseVisualStyleBackColor = true;
             this.piltBtn.Click += new System.EventHandler(this.piltBtn_Click);
             // 
