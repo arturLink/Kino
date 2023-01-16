@@ -141,8 +141,19 @@ namespace Kino
 
             int verg = 1; //column
             int rida = 0; //row
-            string[] paths = Directory.GetFiles(@"../../MovieImages/", "*.jpg");
-            List<string> images = paths.ToList();
+
+
+            //string[] paths = Directory.GetFiles(@"../../MovieImages/", "*.jpg");
+            List<string> images = new List<string>();
+            connect.Open();
+            dataAdapter = new SqlDataAdapter("SELECT Pilt FROM Filmid", connect);
+            DataTable imageTable = new DataTable();
+            dataAdapter.Fill(imageTable);
+            foreach (DataRow pilt in imageTable.Rows)
+            {
+                images.Add(pilt["Pilt"].ToString());
+            }
+            connect.Close();
             for (int i = 0; i < images.Count; i++)
             {
                 film = new PictureBox()
@@ -157,7 +168,7 @@ namespace Kino
 
                 };
                 film.SizeMode = PictureBoxSizeMode.StretchImage;
-                film.ImageLocation = paths[i];
+                film.ImageLocation = @"../../MovieImages/" + images[i];
                 rida++;
                 if (rida == 4)
                 {
