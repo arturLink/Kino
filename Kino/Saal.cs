@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -15,43 +16,19 @@ namespace Kino
     {
         //TableLayoutPanel saal;
         Button koht;
-
+        Button osta;
+        List<Button> kohtList = new List<Button>();
+        SqlCommand cmd;
+        SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vafle\Source\Repos\Kino\Kino\KinoDB.mdf;Integrated Security=True");
 
         public Saal()
         {
             this.Size = new Size(800, 600);
             this.AutoScroll= true;
 
-            //this.saal = new TableLayoutPanel();
-            //this.saal.ColumnCount = 10;
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.999999F));
-            //this.saal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            //this.saal.Location = new System.Drawing.Point(12, 12);
-            //this.saal.Name = "kohad";
-            //this.saal.RowCount = 6;
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66666F));
-            //this.saal.Size = new System.Drawing.Size(760, 459);
-            //this.saal.TabIndex = 0;
-            //this.saal.CellBorderStyle = TableLayoutPanelCellBorderStyle.Outset;
-            //this.Controls.Add(this.saal);
-
-            Kohad(20, 10);
-
+            Kohad(10, 10);
         }
+
 
         public void Kohad(int kuipaljurideid, int kuipaljukohad)
         {
@@ -73,6 +50,7 @@ namespace Kino
                     };
                     saal.Controls.Add(koht,a,i);
                     koht.Click += new EventHandler(Koht_Click);
+                    kohtList.Add(koht);
                 }
                 this.Controls.Add(saal);
             }
