@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -218,7 +219,8 @@ namespace Kino
 
         private void Osta_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            Saal saal = new Saal();
+            saal.ShowDialog();
         }
 
         private void Exit_Click(object sender, EventArgs e)
