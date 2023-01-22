@@ -59,8 +59,12 @@ namespace Kino
                 cmd = new SqlCommand("UPDATE Kohad SET Vaba='-' WHERE Id="+ostudKoha,connect);
                 cmd.ExecuteNonQuery();
                 connect.Close();
-
             }
+
+            //for (int i = 0; i < kohtNumList.Count; i++)
+            //{
+            //    MessageBox.Show("Piletid on ostud" + kohtNumList[i]);
+            //}
         }
 
         private void Exit_Click(object sender, EventArgs e)
