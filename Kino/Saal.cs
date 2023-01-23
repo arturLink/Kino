@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EASendMail;
 
 namespace Kino
 {
@@ -18,7 +19,7 @@ namespace Kino
         Button koht;
         Button osta,exit;
         List<Button> kohtList = new List<Button>();
-        List<String> kohtNumList = new List<String>();
+        public List<String> kohtNumList = new List<String>();
         SqlDataReader dr;
         SqlCommand cmd;
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vafle\Source\Repos\Kino\Kino\KinoDB.mdf;Integrated Security=True");
@@ -53,18 +54,43 @@ namespace Kino
 
         private void Osta_Click(object sender, EventArgs e)
         {
-            foreach (string ostudKoha in kohtNumList)
+            Email mail = new Email();
+            mail.ShowDialog();
+            if (Email.gotemail == true)
             {
-                connect.Open();
-                cmd = new SqlCommand("UPDATE Kohad SET Vaba='-' WHERE Id="+ostudKoha,connect);
-                cmd.ExecuteNonQuery();
-                connect.Close();
+                SmtpMail oMail = new SmtpMail("TryIt");
+                oMail.From = "arturlink04@gmail.com";
+                oMail.To = Email.mail;
+                oMail.Subject = "Kino";
+                oMail.TextBody = "Sinu kohad: ";
+
+                SmtpServer oServer = new SmtpServer("smtp.gmail.com");
+                oServer.User = "arturlink04@gmail.com";
+                oServer.Password = "nddbiaboivqmrwkt"; //\r\n
+                oServer.Port = 587;
+                oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+                foreach (string ostudKoha in kohtNumList)
+                {
+                    oMail.TextBody += ostudKoha + ", ";
+                    connect.Open();
+                    cmd = new SqlCommand("UPDATE Kohad SET Vaba='-' WHERE Id=" + ostudKoha, connect);
+                    cmd.ExecuteNonQuery();
+                    connect.Close();
+                }
+
+                SmtpClient oSmtp = new SmtpClient();
+                oSmtp.SendMail(oServer, oMail);
+
+                MessageBox.Show("Pilet on ostud");
+            }
+            else if (Email.gotemail == false)
+            {
+                MessageBox.Show("Pilet ostmata");
             }
 
-            //for (int i = 0; i < kohtNumList.Count; i++)
-            //{
-            //    MessageBox.Show("Piletid on ostud" + kohtNumList[i]);
-            //}
+            
         }
 
         private void Exit_Click(object sender, EventArgs e)
