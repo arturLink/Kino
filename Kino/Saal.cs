@@ -84,10 +84,12 @@ namespace Kino
                 oSmtp.SendMail(oServer, oMail);
 
                 MessageBox.Show("Pilet on ostud");
+                this.Close();
             }
             else if (Email.gotemail == false)
             {
                 MessageBox.Show("Pilet ostmata");
+                this.Close();
             }
 
             
