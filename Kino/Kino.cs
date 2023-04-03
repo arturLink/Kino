@@ -13,19 +13,27 @@ using System.Windows.Forms;
 
 namespace Kino
 {
+    /**
+     * @brief Класс отвечающий за создания главного экрана
+     */
     public partial class Kino : Form
     {
+        /**
+         * @brief Класс отвечающий за создания главного экрана
+        */
+        //создание нужных элементов
         Button exit, osta;
         Label nimilbl,zanrlbl,aastalbl,keellbl, kestuslbl;
         PictureBox film,filmbox;
         TableLayoutPanel FilmPanel = new TableLayoutPanel();
         Image BckGroundPic = Image.FromFile("../../ProjectImages/theater.jpg");
         Image PanelFramePic = Image.FromFile("../../ProjectImages/frame.jpg");
-
+        //элементы необходимые для работы с бд
         SqlConnection connect = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\vafle\Source\Repos\Kino\Kino\KinoDB.mdf;Integrated Security=True");
         SqlCommand cmd;
         SqlDataReader dr;
         SqlDataAdapter dataAdapter;
+
 
         public Kino()
         {
@@ -139,8 +147,9 @@ namespace Kino
             this.Controls.Add(this.FilmPanel);
             //FilmPanel.Click += FilmPanel_Click;
 
-
+            //! колонка
             int verg = 1; //column
+            //! ряд
             int rida = 0; //row
 
 
@@ -182,6 +191,7 @@ namespace Kino
 
         }
         //dorabotat nado -- select,i vivod danih 4eres kartinku
+
         private void Film_Click(object sender, EventArgs e)
         {
             PictureBox pic = sender as PictureBox;
@@ -216,7 +226,9 @@ namespace Kino
             connect.Close();
         }
 
-
+        /**
+         * @brief Функция которая переводит пользователя в окно выбора места
+         */
         private void Osta_Click(object sender, EventArgs e)
         {
             Saal saal = new Saal();
